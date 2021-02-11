@@ -1,2 +1,2 @@
 # MetamaskToBlazorConnection
-Small libary to connect metamask to blazor app
+Small libary helping to connect metamask to blazor app
