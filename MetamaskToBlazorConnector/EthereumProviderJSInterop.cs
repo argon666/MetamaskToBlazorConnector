@@ -29,10 +29,5 @@ namespace MetamaskToBlazorConnector
             return JsonConvert.DeserializeObject<RpcResponseMessage>(response);
         }
 
-        public async ValueTask<RpcResponseMessage> SendTransactionAsync(EthereumProviderRpcRequestMessage rpcRequestMessage)
-        {
-            var response = await _jsRuntime.InvokeAsync<string>("EthereumProvider.SendMessage", JsonConvert.SerializeObject(rpcRequestMessage));
-            return JsonConvert.DeserializeObject<RpcResponseMessage>(response);
-        }
     }
 }
