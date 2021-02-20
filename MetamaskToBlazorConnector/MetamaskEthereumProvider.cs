@@ -7,16 +7,22 @@ using System.Threading.Tasks;
 
 namespace MetamaskToBlazorConnector
 {
-    public class MetamaskEthereumProvider
+    public class MetamaskEthereumProvider : IEthereumProvider
     {
         private readonly EthereumProviderJSInterop _ethereumProviderJSInterop;
         private MetamaskRequestInterceptor _metamaskRequestInterceptor;
         public bool Available { get; private set; }
         public string Account { get; private set; }
+
+        public string Network { get; private set; }
+
+        public string NameOfProvider { get; private set; }
+
         public MetamaskEthereumProvider(EthereumProviderJSInterop ethereumProviderJSInterop)
         {
             _ethereumProviderJSInterop = ethereumProviderJSInterop;
             _metamaskRequestInterceptor = new MetamaskRequestInterceptor(_ethereumProviderJSInterop, this);
+            NameOfProvider = "MetaMask";
         }
         public async Task<bool> IsProviderInstalled()
         {
@@ -32,7 +38,8 @@ namespace MetamaskToBlazorConnector
         }
         public Task<Web3> GetWeb3Async()
         {
-            var web3 = new Nethereum.Web3.Web3 { Client = { OverridingRequestInterceptor = _metamaskRequestInterceptor } };
+            var web3 = new Web3 { Client = { OverridingRequestInterceptor = _metamaskRequestInterceptor } };
+            Network = web3.Net.Version.ToString();
             return Task.FromResult(web3);
         }
     }
