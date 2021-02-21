@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MetamaskToBlazorConnector
 {
-    class MetamaskRequestInterceptor : RequestInterceptor
+    public class MetamaskRequestInterceptor : RequestInterceptor
     {
         private readonly EthereumProviderJSInterop _ethereumProviderJSInterop;
         private readonly MetamaskEthereumProvider _metamaskEthereumProvider;

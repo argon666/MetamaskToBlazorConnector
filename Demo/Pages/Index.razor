@@ -1,7 +1,40 @@
 ﻿@page "/"
+@inject IEthereumProvider EthereumProvider;
+@inject IJSRuntime jsRuntime;
 
-<h1>Hello, world!</h1>
+@if (!String.IsNullOrEmpty(Account))
+{
+    <p>@Account</p>
+}
+else
+{
+    @if (IsProviderAviable)
+    {
+        <button @onclick="@EnableEtherum">Connect with metamask</button>
+    }
+    else
+    {
+        <p>Install Metamask</p>
+    }
+}
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code
+{
+    bool IsProviderAviable { get; set; }
+    string Account { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        IsProviderAviable = await EthereumProvider.IsProviderInstalled();
+    }
+
+
+    protected async Task EnableEtherum()
+    {
+        Account = await EthereumProvider.EnableProviderAndGetAddress();
+    }
+
+
+}
