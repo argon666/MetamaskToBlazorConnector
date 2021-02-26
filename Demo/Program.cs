@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using MetamaskToBlazorConnector;
+
 namespace Demo
 {
     public class Program
@@ -19,13 +19,13 @@ namespace Demo
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddSingleton<EthereumProviderJSInterop>();
-            builder.Services.AddSingleton<MetamaskRequestInterceptor>();
-            builder.Services.AddSingleton<MetamaskEthereumProvider>();
-            builder.Services.AddSingleton<IEthereumProvider>(serviceProvider =>
-            {
-                return serviceProvider.GetService<MetamaskEthereumProvider>();
-            });
+            //builder.Services.AddSingleton<EthereumProviderJSInterop>();
+            //builder.Services.AddSingleton<MetamaskRequestInterceptor>();
+            //builder.Services.AddSingleton<MetamaskEthereumProvider>();
+            //builder.Services.AddSingleton<IEthereumProvider>(serviceProvider =>
+            //{
+            //    return serviceProvider.GetService<MetamaskEthereumProvider>();
+            //});
 
 
             await builder.Build().RunAsync();

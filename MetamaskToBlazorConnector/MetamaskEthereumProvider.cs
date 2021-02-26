@@ -36,11 +36,11 @@ namespace MetamaskToBlazorConnector
             Account = result;
             return result;
         }
-        public Task<Web3> GetWeb3Async()
+        public Web3 GetWeb3Async()
         {
             var web3 = new Web3 { Client = { OverridingRequestInterceptor = _metamaskRequestInterceptor } };
             Network = web3.Net.Version.ToString();
-            return Task.FromResult(web3);
+            return web3;
         }
     }
 }

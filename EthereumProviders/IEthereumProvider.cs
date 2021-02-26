@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MetamaskToBlazorConnector
+namespace EthereumProviders
 {
     public interface IEthereumProvider
     {
@@ -16,6 +16,5 @@ namespace MetamaskToBlazorConnector
         public Task<bool> IsProviderInstalled();
         public Task<string> EnableProviderAndGetAddress();
         public Web3 GetWeb3Async();
-
     }
 }

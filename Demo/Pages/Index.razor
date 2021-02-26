@@ -1,40 +1,8 @@
 ﻿@page "/"
-@inject IEthereumProvider EthereumProvider;
-@inject IJSRuntime jsRuntime;
-
-@if (!String.IsNullOrEmpty(Account))
-{
-    <p>@Account</p>
-}
-else
-{
-    @if (IsProviderAviable)
-    {
-        <button @onclick="@EnableEtherum">Connect with metamask</button>
-    }
-    else
-    {
-        <p>Install Metamask</p>
-    }
-}
-
-
+<Metamask></Metamask>
 
 @code
 {
-    bool IsProviderAviable { get; set; }
-    string Account { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        IsProviderAviable = await EthereumProvider.IsProviderInstalled();
-    }
-
-
-    protected async Task EnableEtherum()
-    {
-        Account = await EthereumProvider.EnableProviderAndGetAddress();
-    }
-
+    
 
 }
