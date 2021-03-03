@@ -21,15 +21,15 @@ namespace EthereumProviders
         }
         public async ValueTask<bool> IsEthereumProviderInstaled()
         {
-            return await _jsModule.InvokeAsync<bool>("EthereumProvider.IsAvailable");
+            return await _jsRuntime.InvokeAsync<bool>("EthereumProvider.IsAvailable");
         }
         public async ValueTask<string> EnableProviderAndGetAddress()
         {
-            return await _jsModule.InvokeAsync<string>("EthereumProvider.ReturnAccount");
+            return await _jsRuntime.InvokeAsync<string>("EthereumProvider.ReturnAccount");
         }
         public async ValueTask<RpcResponseMessage> SendAsync(RpcRequestMessage rpcRequestMessage)
         {
-            var response = await _jsModule.InvokeAsync<string>("EthereumProvider.SendMessage", JsonConvert.SerializeObject(rpcRequestMessage));
+            var response = await _jsRuntime.InvokeAsync<string>("EthereumProvider.SendMessage", JsonConvert.SerializeObject(rpcRequestMessage));
             return JsonConvert.DeserializeObject<RpcResponseMessage>(response);
         }
     }
